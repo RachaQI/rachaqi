@@ -43,14 +43,14 @@
 				<ul class="navbar-nav">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{% url 'paginas:inicio' %}">Sair</a>
+                        <a class="nav-link text-white" href="{% url 'account_logout' %}">Sair</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{% url 'paginas:rank' %}">Entrar</a>
+                        <a class="nav-link text-white" href="{% url 'account_login' %}">Entrar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{% url 'paginas:rank' %}">Cadastro</a>
+                        <a class="nav-link text-white" href="{% url 'account_signup' %}">Cadastro</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -96,22 +96,35 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="card">
                     <h5 class="card-header text-primary ">Seção de Dúvidas</h5>
                     <div class="card-body">
                         <h5 class="card-title">Dúvidas Públicadas</h5>
-                        <p class="card-text">Dúvidas relacionadas as Atividades Avaliativas da Disciplina Engenharia de Software</p>
+                        <p class="card-text">Dúvidas relacionadas às Atividades Avaliativas da
+                            Disciplina Geometria Analítica e Álgebra Linear</p>
                         <a href="#" class="btn btn-primary">Verificar</a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="card">
                     <h5 class="card-header text-primary ">Seção de Dúvidas</h5>
                     <div class="card-body">
                         <h5 class="card-title">Dúvidas Públicadas</h5>
-                        <p class="card-text">Dúvidas relacionadas as Atividades Avaliativas da Disciplina Sistemas Embarcados</p>
+                        <p class="card-text">Dúvidas relacionadas às Atividades Avaliativas da
+                            Disciplina Protocolos de Comunicação IoT</p>
+                        <a href="#" class="btn btn-primary">Verificar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <h5 class="card-header text-primary ">Seção de Dúvidas</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">Dúvidas Públicadas</h5>
+                        <p class="card-text">Dúvidas relacionadas às Atividades Avaliativas da
+                            Disciplina Mineração de Dados</p>
                         <a href="#" class="btn btn-primary">Verificar</a>
                     </div>
                 </div>
@@ -143,11 +156,12 @@
 
                     <div class="col-sm">
 
-                        <h5>Base de Dados por Disciplina</h5>
+                        <h5>Bases de Dados por Disciplina</h5>
 
                         <ul class="list-unstyled">
 
                             <li><a href="#" class="text-white">Engenharias</a></li>
+                            <li><a href="#" class="text-white">Ciências de Dados</a></li>
 
                         </ul>
 
@@ -159,8 +173,8 @@
                         <ul class="list-unstyled">
                              <li><a href="{% url 'paginas:inicio' %}" class="text-white">Página Inicial</a></li>
                             <li><a href="https://ava.univesp.br" class="text-white">AVA Univesp</a></li>
-                            <li><a href="{% url 'paginas:inicio' %}" class="text-white">Entrar</a></li>
-                            <li><a href="{% url 'paginas:inicio' %}" class="text-white">Cadastro</a></li>
+                            <li><a href="{% url 'account_login' %}" class="text-white">Entrar</a></li>
+                            <li><a href="{% url 'account_signup' %}" class="text-white">Cadastro</a></li>
                         </ul>
                     </div>
                 </div>

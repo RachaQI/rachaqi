@@ -10,3 +10,4 @@ class PaginaInicial(TemplateView):
 class Ranking(TemplateView):
     template_name = 'rank.html'
 
+
