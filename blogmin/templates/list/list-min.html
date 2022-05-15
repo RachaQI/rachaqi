@@ -1,0 +1,69 @@
+{% extends 'paginas/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Lista Posts MinDados.
+{% endblock %}
+
+{% block content %}
+     <div class="container bg-light mt-2">
+        <div class="row">
+            <div class="col">
+    <h3>Lista de Posts na Base de Dados - Mineração de Dados:</h3>
+    <hr>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Autor</th>
+                        <th>Título</th>
+                        <th>Mensagem</th>
+                        <th>Opções</th>
+                    </tr>
+
+                    {% for postmin in object_list %}
+                        <tr>
+                        <td>{{ postmin.author }}</td>
+                        <td><a href="{{ postmin.get_absolute_url }}">{{ postmin.title }}</a></td>
+                        <td>{{ postmin.body|truncatewords:10 }}</td>
+                        <td>
+                            <a href="{% url 'blogmin:update-min' postmin.pk %}" class="btn btn-warning btn-sm" title="Editar">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </a>
+                                <a href="{% url 'blogmin:delete-min' postmin.pk %}" class="btn btn-danger btn-sm" title="Excluir">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </a>
+                        </td>
+                        </tr>
+
+                    {% empty %}
+                     <tr>
+                     <td colspan="3">Nenhum Post registrado neste tópico!</td>
+                     </tr>
+
+                    {% endfor %}
+                </table>
+
+                    <ul class="pagination justify-content-center">
+
+                        {% if page_obj.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page=1">&laquo; Primeira</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+                        {% endif %}
+
+                        <li class="page-item">
+                            <span class="page-link">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</span>
+                        </li>
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Próxima</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a></li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

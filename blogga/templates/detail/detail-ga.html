@@ -1,0 +1,22 @@
+{% extends "paginas/base.html" %}
+
+{% load static %}
+
+{% block title %}{{ postga.title }}{% endblock %}
+
+{% block content %}
+
+     <div class="container bg-light mt-2">
+
+            <h2>{{ postga.title }}</h2>
+            <br>
+            <p class="date">
+                Publicado em {{ postga.created }} por {{ postga.author }}
+            </p>
+            <br>
+            {{ postga.body|linebreaks }}
+            <br>
+
+    </div>
+
+{% endblock %}

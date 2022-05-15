@@ -8,15 +8,15 @@
 
 {% block title %}
 
-    Cadastrar Post em Geometria Analítica
+{{ titulo }}
 
 {% endblock %}
 
 {% block content %}
      <div class="row">
-     <div class="col-md-6 mx-auto">
+     <div class="col-auto my-4 mx-auto">
 
-    <h3 class="text-white">Incluir Post na Base de Dados:</h3>
+    <h3 class="text-white">{{ titulo_pg }}</h3>
 
 <p class="lead text-white">
     <strong>Preencha todos os campos solicitados:</strong>
@@ -32,9 +32,14 @@
 
      <hr class="mt-4">
 
-    <button type="submit" class="btn btn-primary mt-3">
-       Cadastrar!
+    <button type="submit" class="btn btn-primary mt-2">
+      {% autoescape off %}
+        {{ icone }}
+        {% endautoescape %}
+        {{ botao }}
     </button>
+
+    <button type="button" class="btn btn-warning mt-2" onClick="history.go(-1)">Voltar</button>
 
     <hr class="mt-3">
 
@@ -45,4 +50,3 @@
 </div>
 
 {% endblock %}
-

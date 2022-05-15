@@ -17,7 +17,12 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', include('paginas.urls', namespace='paginas')),
+    path('blogga/', include('blogga.urls', namespace='blogga')),
+    path('blogiot/', include('blogiot.urls', namespace='blogiot')),
+    path('blogmin/', include('blogmin.urls', namespace='blogmin')),
+
 ]

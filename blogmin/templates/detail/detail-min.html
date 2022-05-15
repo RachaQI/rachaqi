@@ -1,0 +1,24 @@
+{% extends "paginas/base.html" %}
+
+{% load static %}
+
+{% block title %}{{ postmin.title }}{% endblock %}
+
+{% block content %}
+
+    <div class="container bg-light mt-2">
+
+            <h2>{{ postmin.title }}</h2>
+            <br>
+            <p class="date">
+            Publicado em {{ postmin.created }} por {{ postmin.author }}
+            </p>
+            <br>
+            {{ postmin.body|linebreaks }}
+            <br>
+
+    <button type="button" class="btn btn-warning mt-2" onClick="history.go(-1)">Voltar</button>
+
+    </div>
+
+{% endblock %}
