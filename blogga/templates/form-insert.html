@@ -14,9 +14,9 @@
 
 {% block content %}
      <div class="row">
-     <div class="col-auto my-4 mx-auto">
+     <div class="col-auto my-4 mx-auto bg-dark">
 
-    <h3 class="text-white">{{ titulo_pg }}</h3>
+    <h3 class="text-white mt-2">{{ titulo_pg }}</h3>
 
 <p class="lead text-white">
     <strong>Preencha todos os campos solicitados:</strong>
@@ -24,7 +24,7 @@
 
  <hr>
 
- <form action="" method="POST" class="text-danger">
+ <form action="" method="POST" class="lead text-white font-weight-bold">
 
     {% csrf_token %}
 

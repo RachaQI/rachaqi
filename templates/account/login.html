@@ -14,7 +14,7 @@
     <div class="box col-md-5 mx-auto">
     <h2 class="text-white font-weight-bold">Entrar</h2>
     <br>
-    <form class="font-weight-bold text-danger bg-dark" method="post">
+    <form class="font-weight-bold text-white bg-dark" method="post">
         {% csrf_token %}
         {{ form|crispy }}
         <button class="btn btn-success mt-3" type="submit">Entrar</button>

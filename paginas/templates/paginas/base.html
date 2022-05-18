@@ -38,9 +38,9 @@
                         <a class="nav-link  text-white" href="{% url 'paginas:sobre' %}">Sobre</a>
                     </li>
                 </ul>
-                 <ul class="nav nav-pills">
+                 <ul class="nav nav-pills mr-auto">
                         <li class="nav-item dropdown">
-                            <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Inserir Dúvidas:</a>
+                            <a class="nav-link active dropdown-toggle font-weight-bold" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Inserir Dúvidas:</a>
                             <div class="dropdown-menu">
                               <a class="dropdown-item" href="{% url 'blogga:post-ga' %}">Geometria e Álgebra</a>
                               <a class="dropdown-item" href="{% url 'blogiot:post-iot' %}">Protocolos IoT</a>
@@ -50,12 +50,22 @@
                             </div>
                         </li>
                     </ul>
+            </div>
 
-				<ul class="navbar-nav">
+        <form class="row ml-auto">
+                <div class="col-auto">
+                    <label for="pesquisa"></label><input type="search" class="form-control" id="pesquisa" placeholder="Pesquisar">
+                </div>
+                <div class="col-auto">
+                  <button type="submit" class="btn btn-primary mt-4 font-weight-bold">Pesquisar</button>
+                </div>
+              </form>
+
+            <ul class="navbar-nav mr-auto">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
-                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link text-white" href="#" id="navbarMenuLink"
+                                role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user-circle" aria-hidden="true"></i>
                                 <span id="username">{{ request.user }}</span>
                         <div class="dropdown-divider"></div>
@@ -73,19 +83,7 @@
                         </li>
                     {% endif %}
                 </ul>
-            </div>
-
-        <form class="row">
-                <div class="col-auto">
-                    <label for="pesquisa"></label><input type="search" class="form-control" id="pesquisa" placeholder="Pesquisar">
-                </div>
-                <div class="col-auto">
-                  <button type="submit" class="btn btn-primary mt-4">Pesquisar</button>
-                </div>
-              </form>
-
         </div>
-
     </nav>
 
 {% endblock %}
@@ -125,7 +123,7 @@
                         <h5 class="card-title">Dúvidas Publicadas</h5>
                         <p class="card-text">Dúvidas relacionadas às Atividades Avaliativas da
                             Disciplina Geometria Analítica e Álgebra Linear</p>
-                        <a href="{% url 'blogga:list-ga' %}" class="btn btn-primary">Verificar</a>
+                        <a href="{% url 'blogga:list-ga' %}" class="btn btn-primary font-weight-bold">Verificar</a>
                     </div>
                 </div>
             </div>
@@ -136,7 +134,7 @@
                         <h5 class="card-title">Dúvidas Publicadas</h5>
                         <p class="card-text">Dúvidas relacionadas às Atividades Avaliativas da
                             Disciplina Protocolos de Comunicação IoT</p>
-                        <a href="{% url 'blogiot:list-iot' %}" class="btn btn-primary">Verificar</a>
+                        <a href="{% url 'blogiot:list-iot' %}" class="btn btn-primary font-weight-bold">Verificar</a>
                     </div>
                 </div>
             </div>
@@ -147,7 +145,7 @@
                         <h5 class="card-title">Dúvidas Publicadas</h5>
                         <p class="card-text">Dúvidas relacionadas às Atividades Avaliativas da
                             Disciplina Mineração de Dados</p>
-                        <a href="{% url 'blogmin:list-min' %}" class="btn btn-primary">Verificar</a>
+                        <a href="{% url 'blogmin:list-min' %}" class="btn btn-primary font-weight-bold">Verificar</a>
                     </div>
                 </div>
             </div>
@@ -163,40 +161,40 @@
         <!-- Bloco acima do rodapé com links -->
 
         {% block rodape-links %}
-        <div class="container-fluid bg-ifpr text-white p-3">
-            <div class="container">
+        <div class="container-fluid bg-transparent p-3">
+            <div style="background-color: azure" class="container">
                 <div class="row">
-                    <div class="col-md-3">
-                        <h5 class="text-danger">Redes Sociais</h5>
+                    <div class="col-md-4">
+                        <h5 class="text-primary font-weight-bold">Redes Sociais</h5>
                         <ul class="list-unstyled">
-                            <li><a href="https://www.facebook.com/" class="text-white">Facebook</a></li>
-                            <li><a href="https://www.instagram.com/" class="text-white">Instagram</a></li>
-                            <li><a href="https://www.youtube.com/" class="text-white">YouTube</a></li>
-                            <li><a href="https://twitter.com/" class="text-white">Twitter</a></li>
+                            <li><a href="https://www.facebook.com/" class=" text-dark font-weight-bold">Facebook</a></li>
+                            <li><a href="https://www.instagram.com/" class=" text-dark font-weight-bold">Instagram</a></li>
+                            <li><a href="https://www.youtube.com/" class=" text-dark font-weight-bold">YouTube</a></li>
+                            <li><a href="https://twitter.com/" class=" text-dark font-weight-bold">Twitter</a></li>
                         </ul>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-4">
 
-                        <h5 class="text-danger">Bases de Dados por Disciplina</h5>
+                        <h5 class="text-primary font-weight-bold">Bases de Dados por Disciplina</h5>
 
                         <ul class="list-unstyled">
 
-                            <li><a href="#" class="text-white">Engenharias</a></li>
-                            <li><a href="#" class="text-white">Ciências de Dados</a></li>
+                            <li><a href="#" class=" text-dark font-weight-bold">Engenharias</a></li>
+                            <li><a href="#" class=" text-dark font-weight-bold">Ciências de Dados</a></li>
 
                         </ul>
 
                     </div>
 
-                    <div class="col-md-3">
-                        <h5 class="text-danger">Acesso rápido</h5>
+                    <div class="col-md-4">
+                        <h5 class="text-primary font-weight-bold">Acesso rápido</h5>
 
                         <ul class="list-unstyled">
-                             <li><a href="{% url 'paginas:inicio' %}" class="text-white">Página Inicial</a></li>
-                            <li><a href="https://ava.univesp.br" class="text-white">AVA Univesp</a></li>
-                            <li><a href="{% url 'account_login' %}" class="text-white">Entrar</a></li>
-                            <li><a href="{% url 'account_signup' %}" class="text-white">Cadastro</a></li>
+                             <li><a href="{% url 'paginas:inicio' %}" class=" text-dark font-weight-bold">Página Inicial</a></li>
+                            <li><a href="https://ava.univesp.br" class=" text-dark font-weight-bold">AVA Univesp</a></li>
+                            <li><a href="{% url 'account_login' %}" class=" text-dark font-weight-bold">Entrar</a></li>
+                            <li><a href="{% url 'account_signup' %}" class=" text-dark font-weight-bold">Cadastro</a></li>
                         </ul>
                     </div>
                 </div>
@@ -213,7 +211,7 @@
                 <div class="col-md-12 mx-auto text-center">
                     <img src="#" height="48" class="float-left" alt="">
                     <p>
-                        <span class="lead text-dark">RachaQI Univesp - Desenvolvido por Projeto Integrador Univesp - Pq. Tecnológico S.J.C. -
+                        <span class="lead">RachaQI Univesp - Desenvolvido por Projeto Integrador Univesp - Pq. Tecnológico S.J.C. -
                             Sala 005 - Grupo 007 / &copy;2022</span>
                     </p>
 

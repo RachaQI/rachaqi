@@ -14,19 +14,19 @@
 
 {% block content %}
      <div class="row">
-     <div class="col-md-9 mx-auto text-white">
+     <div class="col-md-9 mx-auto mt-3 bg-dark">
 
-<h3>Excluir Post da Base de Dados: MIN-DADOS</h3>
+<h3 class="mt-2 text-white">Excluir Post da Base de Dados: MIN-DADOS</h3>
 
 <p class="lead text-white">
-    Confirme para Excluir Definitivamente seu Registro:
+    Confirme para Excluir Definitivamente seu Post:
  </p>
 
  <hr>
 
  <form action="" method="POST">
 
-     <p class="text-danger">
+     <p class="text-white">
          Deseja Realmente Excluir o Registro: <strong>{{ object }} ?</strong>
      </p>
 
@@ -37,7 +37,7 @@
      <hr class="mt-4">
 
      <button type="submit" class="btn btn-danger mt-3">Excluir!</button>
-     <button type="button" class="btn btn-warning mt-2" onClick="history.go(-1)">Voltar</button>
+     <button type="button" class="btn btn-warning mt-3" onClick="history.go(-1)">Cancelar</button>
 
     <hr class="mt-3">
 
