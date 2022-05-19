@@ -1,0 +1,27 @@
+{% extends 'paginas/templates/paginas/base.html' %}
+
+{% load static %}
+
+{% block title %}
+
+    ERRO...!
+
+{% endblock %}
+
+{% block content %}
+    <div>
+          <aside><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4424790/Mirror.png" width="700" height="500"
+                      alt="404 Image"/>
+          </aside>
+          <main class="bg-dark">
+            <h2 class="text-white font-weight-bold mt-2 text-center">Sorry! Página não encontrada ou então:</h2>
+            <p class="lead text-white font-weight-bold text-center">
+             Você não tem permissão para executar esta ação!!!
+                <em class="text-danger font-weight-bold">. . . Apagar ou Editar um Post que não seja Seu!!!</em>
+            </p>
+            <button type="button" class="btn btn-warning mt-2 ml-3" onClick="history.go(-1)">Voltar</button>
+              <br>
+              <hr class="class-1">
+          </main>
+    </div>
+{% endblock %}

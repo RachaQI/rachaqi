@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.views.generic import TemplateView
 
 
@@ -15,3 +16,6 @@ class Ranking(TemplateView):
 class Sobre(TemplateView):
     template_name = 'paginas/sobre.html'
 
+
+def handler404(request, exception):
+    return render(request, 'paginas/templates/paginas/404.html')
