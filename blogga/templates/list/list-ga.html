@@ -8,10 +8,25 @@ Lista Posts GA.
 
 {% block content %}
      <div class="container bg-light mt-2">
-            <div class="row">
+         <div class="row">
             <div class="col mt-2">
             <h3>Lista de Posts na Base de Dados - Geometria Analítica e Álgebra Linear:</h3>
             <hr>
+
+            <form action="?" method="GET">
+
+                <label for="" class="font-weight-bold">Termo a Procurar:<input type="text" name="title" id=""
+                  value="{{request.GET.title}}" class="p-1 border ml-2" autocomplete="off"
+                  placeholder="Nome ou Parte do Título"></label>
+
+                <button type="submit" class="btn btn-success ml-2">Buscar</button>
+
+                <a href="{% url 'blogga:list-ga' %}" class="lead btn btn-warning ml-3">Limpar</a>
+
+            </form>
+
+            <hr>
+
             <div class="table-responsive">
                 <table class="table table-striped">
                     <tr>
@@ -38,7 +53,7 @@ Lista Posts GA.
 
                     {% empty %}
                      <tr>
-                     <td colspan="3">Nenhum Post registrado neste tópico!</td>
+                     <td colspan="3">Nenhum Post registrado neste tópico ou busca!</td>
                      </tr>
 
                     {% endfor %}
@@ -48,8 +63,15 @@ Lista Posts GA.
                     <ul class="pagination justify-content-center">
 
                         {% if page_obj.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?page=1">&laquo; Primeira</a></li>
-                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+
+                            {% if request.GET.title %}
+                            <li class="page-item"><a class="page-link" href="?page=1&title={{request.GET.title}}">&laquo; Primeira</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}&title={{request.GET.title}}">Anterior</a></li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href="?page=1">&laquo; Primeira</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+                            {% endif %}
+
                         {% endif %}
 
                         <li class="page-item">
@@ -57,8 +79,15 @@ Lista Posts GA.
                         </li>
 
                         {% if page_obj.has_next %}
+
+                            {% if request.GET.title %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}&title={{request.GET.title}}">Próxima</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}&title={{request.GET.title}}">Última &raquo;</a></li><li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Próxima</a></li>
+                        {% else %}
                         <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Próxima</a></li>
-                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a></li><li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Próxima</a></li>
+                            {% endif %}
+
                         {% endif %}
 
                     </ul>

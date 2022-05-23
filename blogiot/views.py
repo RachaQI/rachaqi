@@ -80,6 +80,17 @@ class PostIotList(LoginRequiredMixin, ListView):
     template_name = 'blogiot/templates/list/list-iot.html'
     paginate_by = 15
 
+    def get_queryset(self):
+
+        txt_title = self.request.GET.get('title')
+
+        if txt_title:
+            title = PostIot.objects.filter(title__icontains=txt_title)
+        else:
+            title = PostIot.objects.all()
+
+        return title
+
 
 # ################# DETAIL VIEWS ###################
 

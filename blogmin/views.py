@@ -80,6 +80,17 @@ class PostMinList(LoginRequiredMixin, ListView):
     template_name = 'blogmin/templates/list/list-min.html'
     paginate_by = 15
 
+    def get_queryset(self):
+
+        txt_title = self.request.GET.get('title')
+
+        if txt_title:
+            title = PostMin.objects.filter(title__icontains=txt_title)
+        else:
+            title = PostMin.objects.all()
+
+        return title
+
 
 # ################# DETAIL VIEWS ###################
 

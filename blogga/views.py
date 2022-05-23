@@ -82,6 +82,17 @@ class PostGaList(LoginRequiredMixin, ListView):
     template_name = 'blogga/templates/list/list-ga.html'
     paginate_by = 15
 
+    def get_queryset(self):
+
+        txt_title = self.request.GET.get('title')
+
+        if txt_title:
+            title = PostGa.objects.filter(title__icontains=txt_title)
+        else:
+            title = PostGa.objects.all()
+
+        return title
+
 
 # ################# Detail VIEWS ###################
 
