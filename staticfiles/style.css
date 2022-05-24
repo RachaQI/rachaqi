@@ -1,0 +1,11 @@
+body {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background: white url("img/golden_silver_1366x768.jpg");
+    background-size: cover;
+}
+
+hr.class-1 {
+    height: 3px;
+}
