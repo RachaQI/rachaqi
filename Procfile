@@ -1,1 +1,1 @@
-web: gunicorn rachaqi.wsgi
+web: gunicorn rachaqi.wsgi --log-file -
