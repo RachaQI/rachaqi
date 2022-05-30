@@ -29,3 +29,5 @@ urlpatterns = [
 ]
 
 handler404 = 'paginas.views.handler404'
+
+handler500 = 'paginas.views.handler500'

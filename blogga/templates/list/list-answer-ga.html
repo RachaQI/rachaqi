@@ -1,0 +1,89 @@
+{% extends 'paginas/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Lista Respostas GA.
+{% endblock %}
+
+{% block content %}
+     <div class="container bg-light mt-2">
+         <div class="row">
+            <div class="col mt-2">
+            <h3>Lista de Respostas na Base de Dados - Geometria Analítica e Álgebra Linear:</h3>
+            <hr>
+
+            <form action="?" method="GET">
+
+                <label for="" class="font-weight-bold">Termo a Procurar:<input type="text" name="body" id=""
+                  value="{{request.GET.body}}" class="p-1 border ml-2" autocomplete="off"
+                  placeholder="Resposta Contém:"></label>
+
+                <button type="submit" class="btn btn-success ml-2">Buscar</button>
+
+                <a href="{% url 'blogga:listasw-ga' %}" class="lead btn btn-warning ml-3">Limpar</a>
+
+            </form>
+
+            <hr>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Autor</th>
+                        <th>Dúvida</th>
+                        <th>Resposta</th>
+                    </tr>
+
+                    {% for answerga in object_list %}
+                        <tr>
+                            <td>{{ answerga.author }}</td>
+                            <td>{{ answerga.title }}</td>
+                            <td>{{ answerga.body }}</td>
+                        </tr>
+
+                    {% empty %}
+                     <tr>
+                     <td colspan="3">Nenhum Resposta registrada neste tópico ou busca!</td>
+                     </tr>
+
+                    {% endfor %}
+
+                </table>
+
+                    <ul class="pagination justify-content-center">
+
+                        {% if page_obj.has_previous %}
+
+                            {% if request.GET.body %}
+                            <li class="page-item"><a class="page-link" href="?page=1&title={{request.GET.body}}">&laquo; Primeira</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}&title={{request.GET.body}}">Anterior</a></li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href="?page=1">&laquo; Primeira</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+                            {% endif %}
+
+                        {% endif %}
+
+                        <li class="page-item">
+                            <span class="page-link">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</span>
+                        </li>
+
+                        {% if page_obj.has_next %}
+
+                            {% if request.GET.body %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}&title={{request.GET.body}}">Próxima</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}&title={{request.GET.body}}">Última &raquo;</a></li><li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Próxima</a></li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Próxima</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a></li><li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Próxima</a></li>
+                            {% endif %}
+
+                        {% endif %}
+                    </ul>
+                 </div>
+            </div>
+        </div>
+     </div>
+
+{% endblock %}

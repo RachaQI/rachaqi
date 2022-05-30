@@ -5,7 +5,7 @@ from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 
-from .models import PostMin
+from .models import PostMin, AnswerMin
 
 
 # Create your views here.
@@ -17,7 +17,6 @@ class PostMinCreate(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('blogmin:list-min')
 
     def form_valid(self, form):
-
         form.instance.author = self.request.user
 
         url = super().form_valid(form)
@@ -29,6 +28,31 @@ class PostMinCreate(LoginRequiredMixin, CreateView):
 
         context['titulo'] = "Incluir Mensagem MIN-DADOS"
         context['titulo_pg'] = "Incluir Post na Base de Dados: Mineração de Dados"
+        context['botao'] = "Salvar"
+        context['icone'] = '<i class="fa fa-check" aria-hidden="true"></i>'
+
+        return context
+
+
+class AnswerMinCreate(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('account_login')
+    model = AnswerMin
+    fields = ['title', 'body']
+    template_name = 'blogmin/templates/form-insert.html'
+    success_url = reverse_lazy('blogmin:listasw-min')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+
+        url = super().form_valid(form)
+
+        return url
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        context['titulo'] = "Incluir Resposta Min. Dados"
+        context['titulo_pg'] = "Incluir Resposta na Base de Dados: Mineração de Dados"
         context['botao'] = "Salvar"
         context['icone'] = '<i class="fa fa-check" aria-hidden="true"></i>'
 
@@ -90,6 +114,24 @@ class PostMinList(LoginRequiredMixin, ListView):
             title = PostMin.objects.all()
 
         return title
+
+
+class AnswerMinList(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('account_login')
+    model = AnswerMin
+    template_name = 'blogmin/templates/list/list-answer-min.html'
+    paginate_by = 15
+
+    def get_queryset(self):
+
+        txt_body = self.request.GET.get('body')
+
+        if txt_body:
+            body = AnswerMin.objects.filter(body__icontains=txt_body)
+        else:
+            body = AnswerMin.objects.all()
+
+        return body
 
 
 # ################# DETAIL VIEWS ###################

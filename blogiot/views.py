@@ -5,7 +5,7 @@ from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 
-from .models import PostIot
+from .models import PostIot, AnswerIot
 
 
 # Create your views here.
@@ -17,7 +17,6 @@ class PostIotCreate(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('blogiot:list-iot')
 
     def form_valid(self, form):
-
         form.instance.author = self.request.user
 
         url = super().form_valid(form)
@@ -29,6 +28,31 @@ class PostIotCreate(LoginRequiredMixin, CreateView):
 
         context['titulo'] = "Incluir Mensagem PC-IOT"
         context['titulo_pg'] = "Incluir Post na Base de Dados: Protocolos de Comunicação IoT"
+        context['botao'] = "Salvar"
+        context['icone'] = '<i class="fa fa-check" aria-hidden="true"></i>'
+
+        return context
+
+
+class AnswerIotCreate(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('account_login')
+    model = AnswerIot
+    fields = ['title', 'body']
+    template_name = 'blogiot/templates/form-insert.html'
+    success_url = reverse_lazy('blogiot:listasw-iot')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+
+        url = super().form_valid(form)
+
+        return url
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        context['titulo'] = "Incluir Resposta Prot-IoT"
+        context['titulo_pg'] = "Incluir Resposta na Base de Dados: Protocolos de Comunicação IoT"
         context['botao'] = "Salvar"
         context['icone'] = '<i class="fa fa-check" aria-hidden="true"></i>'
 
@@ -90,6 +114,24 @@ class PostIotList(LoginRequiredMixin, ListView):
             title = PostIot.objects.all()
 
         return title
+
+
+class AnswerIotList(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('account_login')
+    model = AnswerIot
+    template_name = 'blogiot/templates/list/list-answer-iot.html'
+    paginate_by = 15
+
+    def get_queryset(self):
+
+        txt_body = self.request.GET.get('body')
+
+        if txt_body:
+            body = AnswerIot.objects.filter(body__icontains=txt_body)
+        else:
+            body = AnswerIot.objects.all()
+
+        return body
 
 
 # ################# DETAIL VIEWS ###################

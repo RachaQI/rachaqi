@@ -18,6 +18,12 @@
             <br>
         <hr>
     <button type="button" class="btn btn-warning mt-3" onClick="history.go(-1)">Voltar</button>
+
+     <a href="{% url 'blogiot:answer-iot' postiot.pk %}" class="btn btn-primary mt-3 ml-3" role="button" title="Responder">
+               <i class="fa fa-pencil mr-1" aria-hidden="true"></i>Responder</a>
+
+     <a href="{% url 'blogiot:listasw-iot' %}" class="btn btn-success mt-3 ml-3" role="button" title="Respostas">
+               <i class="fa fa-pencil mr-1" aria-hidden="true"></i>Respostas</a>
     <br>
     <hr>
 

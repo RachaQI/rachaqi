@@ -32,3 +32,16 @@ def pre_save_iot(signal, instance, sender, **kwargs):
 
 
 signals.pre_save.connect(pre_save_iot, sender=PostIot)
+
+
+class AnswerIot(models.Model):
+    title = models.ForeignKey(PostIot, on_delete=models.CASCADE, related_name='answersiot', verbose_name='Dúvida')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Autor')
+    body = models.TextField(verbose_name='Resposta')
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created']
+
+    def __str__(self):
+        return 'Resposta {} de {}'.format(self.body, self.author)

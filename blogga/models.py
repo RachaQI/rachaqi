@@ -25,11 +25,24 @@ class PostGa(models.Model):
     def get_absolute_url(self):
         return reverse('blogga:detail-ga', kwargs={'slug': self.slug})
 
-    # SIGNALS => Transforma o Título em Slug e salva no banco para exibir nas páginas!
 
+# SIGNALS => Transforma o Título em Slug e salva no banco para exibir nas páginas!
 
 def pre_save_ga(signal, instance, sender, **kwargs):
     instance.slug = slugify(instance.title)
 
 
 signals.pre_save.connect(pre_save_ga, sender=PostGa)
+
+
+class AnswerGa(models.Model):
+    title = models.ForeignKey(PostGa, on_delete=models.CASCADE, related_name='answersga', verbose_name='Dúvida')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Autor')
+    body = models.TextField(verbose_name='Resposta')
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created']
+
+    def __str__(self):
+        return 'Resposta {} de {}'.format(self.body, self.author)

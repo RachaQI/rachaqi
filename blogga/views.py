@@ -5,7 +5,7 @@ from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 
-from .models import PostGa
+from .models import PostGa, AnswerGa
 
 
 # Create your views here.
@@ -19,7 +19,6 @@ class PostGaCreate(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('blogga:list-ga')
 
     def form_valid(self, form):
-
         form.instance.author = self.request.user
 
         url = super().form_valid(form)
@@ -31,6 +30,31 @@ class PostGaCreate(LoginRequiredMixin, CreateView):
 
         context['titulo'] = "Incluir Mensagem GA-AL"
         context['titulo_pg'] = "Incluir Post na Base de Dados: Geometria Analítica e Álgebra Linear"
+        context['botao'] = "Salvar"
+        context['icone'] = '<i class="fa fa-check" aria-hidden="true"></i>'
+
+        return context
+
+
+class AnswerGaCreate(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('account_login')
+    model = AnswerGa
+    fields = ['title', 'body']
+    template_name = 'blogga/templates/form-insert.html'
+    success_url = reverse_lazy('blogga:listasw-ga')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+
+        url = super().form_valid(form)
+
+        return url
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        context['titulo'] = "Incluir Resposta GA-AL"
+        context['titulo_pg'] = "Incluir Resposta na Base de Dados: Geometria Analítica e Álgebra Linear"
         context['botao'] = "Salvar"
         context['icone'] = '<i class="fa fa-check" aria-hidden="true"></i>'
 
@@ -92,6 +116,24 @@ class PostGaList(LoginRequiredMixin, ListView):
             title = PostGa.objects.all()
 
         return title
+
+
+class AnswerGaList(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('account_login')
+    model = AnswerGa
+    template_name = 'blogga/templates/list/list-answer-ga.html'
+    paginate_by = 15
+
+    def get_queryset(self):
+
+        txt_body = self.request.GET.get('body')
+
+        if txt_body:
+            body = AnswerGa.objects.filter(body__icontains=txt_body)
+        else:
+            body = AnswerGa.objects.all()
+
+        return body
 
 
 # ################# Detail VIEWS ###################

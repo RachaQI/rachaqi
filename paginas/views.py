@@ -17,5 +17,9 @@ class Sobre(TemplateView):
     template_name = 'paginas/sobre.html'
 
 
-def handler404(request, exception):
-    return render(request, 'paginas/templates/paginas/404.html')
+def handler404(request, *args, **kwargs):
+    return render(request, 'paginas/404.html')
+
+
+def handler500(request, *args, **kwargs):
+    return render(request, 'paginas/404.html')
